@@ -59,10 +59,22 @@ echo "-----> Writing policy file"
 mkdir -p $INSTALL_DIR/etc/ImageMagick
 cat > $INSTALL_DIR/policy.xml <<EOF
 <policymap>
-  <policy domain="coder" rights="none" pattern="EPHEMERAL" />
-  <policy domain="coder" rights="none" pattern="HTTPS" />
-  <policy domain="coder" rights="none" pattern="MVG" />
-  <policy domain="coder" rights="none" pattern="MSL" />
+  <policy domain="resource" name="memory" value="512MiB"/>
+  <policy domain="resource" name="map" value="1024MiB"/>
+  <policy domain="resource" name="width" value="16KP"/>
+  <policy domain="resource" name="height" value="16KP"/>
+  <policy domain="resource" name="area" value="20MP"/>
+  <policy domain="resource" name="disk" value="10MiB"/>
+  <policy domain="delegate" rights="read | write" pattern="URL" />
+  <policy domain="delegate" rights="read | write" pattern="HTTPS" />
+  <policy domain="delegate" rights="read | write" pattern="HTTP" />
+  <policy domain="coder" rights="read | write" pattern="PDF" />
+  <policy domain="module" rights="read | write" pattern="{EPS,PS2,PS3,PS,PDF,XPS}" />
+  <policy domain="coder" rights="read | write" pattern="PDF" />
+  <policy domain="path" rights="read | write" pattern="PDF" />
+  <policy domain="coder" rights="read | write" pattern="HTTPS" />
+  <policy domain="delegate" rights="read | write" pattern="HTTPS" />
+  <policy domain="path" rights="none" pattern="@*"/>
 </policymap>
 EOF
 
